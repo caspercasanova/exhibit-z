@@ -7,11 +7,11 @@ export const useAction = (state, middleWareDispatch) => ({
 		middleWareDispatch({ type: types.LOAD_UFO_DATA, payload: data });
 	},
 	asyncIncrement: () => {
-		console.log("async action in use");
+		console.log("async increment action in use");
 		middleWareDispatch({ type: types.FIRE_ASYNC_INCREMENT });
 	},
 	asyncDecrement: () => {
-		console.log("async action in use");
-		middleWareDispatch({ type: types.FIRE_ASYNC_INCREMENT });
+		console.log("async decrement action in use");
+		middleWareDispatch({ type: types.FIRE_ASYNC_DECREMENT });
 	},
 });

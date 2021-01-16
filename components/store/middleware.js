@@ -20,9 +20,15 @@ export const applyMiddleware = (dispatch) => async (action) => {
 				dispatch({ type: types.LOAD_QUAKE_DATA_FAIL, payload: String(e) });
 			}
 		}
-		case types.FIRE_ASYNC_INCREMENT: {
-			setTimeout(() => dispatch({ type: types.INCREMENT }), 5000);
-			// unsanitized data
-		}
+		case types.FIRE_ASYNC_DECREMENT:
+			console.log("within the middleware decrement", action);
+			return setTimeout(() => dispatch({ type: types.DECREMENT }), 5000);
+
+		case types.FIRE_ASYNC_INCREMENT:
+			console.log("within the middleware increment", action);
+			return setTimeout(() => dispatch({ type: types.INCREMENT }), 5000);
+
+		default:
+			dispatch(action);
 	}
 };

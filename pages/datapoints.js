@@ -4,13 +4,13 @@ import { StoreContext } from "../components/store/StateProvider";
 
 const DataPoints = () => {
 	const { state, actions } = useContext(StoreContext);
-	console.log(state);
+	console.log("frontend state", state);
 
 	return (
 		<section>
 			<h1>Globe Canvas</h1>
-			<button onClick={() => actions.asyncIncrement()}>Earth Quakes</button>
-			<button onClick={() => actions.asyncIncrement()}>UFOS</button>
+			<button onClick={actions.asyncIncrement}>Earth Quakes</button>
+			<button onClick={actions.asyncDecrement}>UFOS</button>
 			<GlobeCanvas />
 		</section>
 	);
