@@ -1,11 +1,11 @@
 import { useState, useEffect, useReducer, createContext } from "react";
-
+const DATAWORLD_KEY = process.env.DATAWORLD_KEY;
 const UFOContext = createContext();
 
 const UFOProvider = (props) => {
 	const QueryURL =
 		"https://api.data.world/v0/queries/222788f0-603e-40dc-bc32-689fe52d1774/results?includeTableSchema=false";
-	const API_KEY = ``;
+	const API_KEY = DATAWORLD_KEY;
 
 	const [ufoData, setData] = useState(null);
 	const [error, setError] = useState(false);

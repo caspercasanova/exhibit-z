@@ -1,16 +1,16 @@
 import { useContext } from "react";
 import GlobeCanvas from "../components/3d/GlobeCanvas";
-import { StateStore } from "../components/store/StateProps";
+import { StoreContext } from "../components/store/StateProvider";
 
 const DataPoints = () => {
-	const currentState = useContext(StateStore);
-	console.log(currentState);
-	const { state, dispatch } = currentState;
+	const { state, actions } = useContext(StoreContext);
+	console.log(state);
+
 	return (
 		<section>
 			<h1>Globe Canvas</h1>
-			<button onClick={() => dispatch({ type: "INCREMENT" })}>Earth Quakes</button>
-			<button onClick={() => dispatch({ type: "DECREMENT" })}>UFOS</button>
+			<button onClick={() => actions.asyncIncrement()}>Earth Quakes</button>
+			<button onClick={() => actions.asyncIncrement()}>UFOS</button>
 			<GlobeCanvas />
 		</section>
 	);
