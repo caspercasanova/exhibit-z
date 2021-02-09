@@ -10,22 +10,29 @@ export const applyMiddleware = (dispatch) => async (action) => {
 			} catch (e) {
 				dispatch({ type: types.LOAD_UFO_DATA_FAIL, payload: String(e) });
 			}
+			break;
 		}
+
 		case types.LOAD_QUAKE_DATA: {
+			const earthQuakeURL =
+				"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2014-01-01&endtime=2014-01-02";
+
 			try {
-				let datas = await fetch("endpoint").then((res) => res.json());
+				let unparsedData = await fetch(earthQuakeURL);
+				let data = await unparsedData.json();
 				// unsanitized data
-				dispatch({ type: types.LOAD_QUAKE_DATA_SUCCESS, payload: datas });
+				console.log("QUAKE DATA FETCHED", data);
+				dispatch({ type: types.LOAD_QUAKE_DATA_SUCCESS, payload: data });
 			} catch (e) {
-				dispatch({ type: types.LOAD_QUAKE_DATA_FAIL, payload: String(e) });
+				dispatch({ type: types.LOAD_QUAKE_DATA_FAILURE, payload: String(e) });
 			}
+			break;
 		}
+
 		case types.FIRE_ASYNC_DECREMENT:
-			console.log("within the middleware decrement", action);
 			return setTimeout(() => dispatch({ type: types.DECREMENT }), 5000);
 
 		case types.FIRE_ASYNC_INCREMENT:
-			console.log("within the middleware increment", action);
 			return setTimeout(() => dispatch({ type: types.INCREMENT }), 5000);
 
 		default:

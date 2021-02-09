@@ -4,14 +4,12 @@ import { OrbitControls } from "drei";
 import Globe from "./Globe";
 import QuakeMarker from "./QuakeMarker";
 
-// contexts
-import { UFOContext } from "../Provider";
-import { EarthQuakeContext } from "../EarthQuakes";
+import { StoreContext } from "../store/StateProvider";
 
 export default function GlobeCanvas() {
-	// const { quakeData, error } = useContext(EarthQuakeContext);
-
+	const { state } = useContext(StoreContext);
 	const EARTH_RADIUS = 10;
+	// console.log("This is in the GlobeCanvass", quakeData);
 
 	return (
 		<Canvas camera={{ position: [0, 0, 35] }}>
@@ -21,15 +19,14 @@ export default function GlobeCanvas() {
 				<Globe radius={EARTH_RADIUS} />
 			</Suspense>
 
-			<OrbitControls />
+			{state.quakeData?.features?.length ? (
+				<Suspense fallback={<>Loading!</>}>
+					{state.quakeData?.features.map((quakePoint, index) => (
+						<QuakeMarker quakePoint={quakePoint} key={index} earthRadius={EARTH_RADIUS} />
+					))}
+				</Suspense>
+			) : null}
+			<OrbitControls maxDistance={20} minDistance={16} />
 		</Canvas>
 	);
 }
-
-// {quakeData ? (
-// 	<Suspense fallback={<>Loading!</>}>
-// 		{quakeData.features.map((quakePoint, index) => (
-// 			<QuakeMarker quakePoint={quakePoint} key={index} earthRadius={EARTH_RADIUS} />
-// 		))}
-// 	</Suspense>
-// ) : null}

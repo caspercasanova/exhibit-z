@@ -1,14 +1,18 @@
-import Link from "next/link";
-
+import { useContext } from "react";
+import { StoreContext } from "../components/store/StateProvider";
+import GlobeCanvas from "../components/3d/GlobeCanvas";
+import Content from "../components/Content";
 const Index = () => {
+	const { state, actions } = useContext(StoreContext);
 	return (
 		<div className='main'>
-			<Link href='/birds'>
-				<a>Birds Example</a>
-			</Link>
-			<Link href='/datapoints'>
-				<a>Boxes Example</a>
-			</Link>
+			<button onClick={actions.fetchQuakeData}>Earth Quakes</button>
+			<button onClick={actions.asyncDecrement}>UFOS</button>
+			<div className='globeContainer'>
+				<GlobeCanvas />
+			</div>
+
+			<Content />
 		</div>
 	);
 };

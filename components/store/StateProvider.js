@@ -4,6 +4,7 @@ import { useAction } from "./useAction";
 import { applyMiddleware } from "./middleware";
 
 export const StoreContext = createContext(initialState);
+
 export const StoreProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const actions = useAction(state, applyMiddleware(dispatch));

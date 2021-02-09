@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import { Box, HTML } from "drei";
+import { Box, Html } from "drei";
 
 const QuakeMarker = ({ quakePoint, earthRadius }) => {
+	//console.log(quakePoint);
 	const mesh = useRef();
 	const [hovered, setHover] = useState(false);
 	const [active, setActive] = useState(false);
@@ -32,14 +33,14 @@ const QuakeMarker = ({ quakePoint, earthRadius }) => {
 				<meshStandardMaterial attach='material' color={hovered ? "#2b6c76" : "#720b23"} />
 			</Box>
 			{hovered && (
-				<HTML>
+				<Html>
 					<div className={"markerContainer"}>
 						{title}
 						<h1>{title}</h1>
 						<p>{mag}</p>
 						<p>{time}</p>
 					</div>
-				</HTML>
+				</Html>
 			)}
 		</group>
 	);
