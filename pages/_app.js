@@ -1,12 +1,15 @@
 import "./index.scss";
 
 import { StoreProvider } from "../components/store/StateProvider";
+import { ManagedUIContext } from "../components/ui/context";
 
 function MyApp({ Component, pageProps }) {
 	return (
-		<StoreProvider>
-			<Component {...pageProps} />
-		</StoreProvider>
+		<ManagedUIContext>
+			<StoreProvider>
+				<Component {...pageProps} />
+			</StoreProvider>
+		</ManagedUIContext>
 	);
 }
 

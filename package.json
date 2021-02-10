@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@reach/portal": "^0.13.0",
     "drei": "2.2.13",
     "next": "10.0.5",
     "react": "17.0.1",
