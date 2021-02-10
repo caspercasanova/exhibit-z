@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { Box, Html } from "drei";
 
+import { coordinateToPosition } from "./helpers";
+
 const QuakeMarker = ({ quakePoint, earthRadius }) => {
 	//console.log(quakePoint);
 	const mesh = useRef();
@@ -19,11 +21,12 @@ const QuakeMarker = ({ quakePoint, earthRadius }) => {
 	let y = Math.sin(latRadius) * (earthRadius + 0.1);
 	let z = Math.cos(latRadius) * Math.sin(lonRadius) * (earthRadius + 0.1);
 
+	const vect3 = coordinateToPosition(latitude, longitude, earthRadius);
 	return (
 		<group>
 			<Box
 				args={[0.1, 0.1, 0.1]}
-				position={[x, y, z]}
+				position={vect3}
 				ref={mesh}
 				// scale={active ? [6, 6, 6] : [5, 5, 5]}
 				onClick={() => setActive(!active)}

@@ -1,4 +1,4 @@
-import "./index.css";
+import "./index.scss";
 
 import { StoreProvider } from "../components/store/StateProvider";
 

@@ -1,0 +1,34 @@
+.content {
+	padding: 2.5rem;
+
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+.mainContent {
+	display: flex;
+	flex: 1;
+	position: relative;
+	pointer-events: none;
+}
+
+.leftAside {
+	z-index: 10;
+	flex: 1;
+	border: 1px solid red;
+	pointer-events: all;
+}
+.middleSection {
+	pointer-events: none;
+	z-index: 0;
+	flex: 3;
+	border: 1px solid green;
+	overflow-x: hidden;
+}
+.rightAside {
+	pointer-events: all;
+	z-index: 10;
+	flex: 1;
+	border: 1px solid blue;
+}
